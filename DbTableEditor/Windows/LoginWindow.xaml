@@ -1,0 +1,41 @@
+﻿<Window x:Class="DbTableEditor.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbTableEditor"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="LoginWindow" Height="720" Width="550" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="73*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle  Height="419" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FF021229" Offset="1"/>
+                    <GradientStop Color="#FF35288B" Offset="0.546"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle RadiusY="10" RadiusX="10" Fill="White" Margin="96,180,97,137" Grid.ColumnSpan="2">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FF0E1E85"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid Margin="96,180,97,163" Grid.ColumnSpan="2">
+            <Label Content="LOGIN PAGE" HorizontalAlignment="Center"  Foreground="Gray" FontSize="30" Width="186" Margin="0,0,0,288" />
+            <StackPanel  Margin="15,73,15,-43">
+                <TextBox x:Name="Server" Margin="2" materialDesign:HintAssist.Hint="Server name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="22" Cursor="IBeam"/>
+                <TextBox x:Name="DataBase" Margin="2" materialDesign:HintAssist.Hint="Database name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="22"/>
+                <TextBox x:Name="User" Margin="2" materialDesign:HintAssist.Hint="User" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="22"/>
+                <PasswordBox x:Name="Password" Margin="2" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontFamily="Champagne &amp; Limousines" FontSize="22"/>
+            </StackPanel>
+        </Grid>
+        <Button Width="232" Height="64" HorizontalAlignment="Center" Content="LOGIN" Click="LoginClick" Background="#FF03175B" FontWeight="Bold" FontSize="24" Margin="156,502,156,105" Grid.ColumnSpan="2"></Button>
+        <CheckBox x:Name="systemUserCheckbox" Content="SYSTEM USER" HorizontalAlignment="Left" VerticalAlignment="Bottom" Checked="SystemUserChecked" Unchecked="SystemUserUnchecked" FontFamily="Century Gothic" FontSize="20"/>
+    </Grid>
+</Window>

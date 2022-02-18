@@ -1,0 +1,53 @@
+﻿<Page x:Class="DbTableEditor.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DbTableEditor"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+    
+    <Page.Resources>
+        <ObjectDataProvider x:Key="Choices" ObjectType="{x:Type local:Delimiter}" MethodName="GetDelimiters"/>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+
+        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" Background="Blue" />
+        <GridSplitter Grid.Column="3" ShowsPreview="False" Width="3" HorizontalAlignment="Center" Background="Blue" />
+
+        <DataGrid IsReadOnly="True" x:Name="dataGrid" ItemsSource="{Binding Data}" Grid.Column="2" Margin="5" BorderBrush="Blue"></DataGrid>
+
+        <StackPanel Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding RefreshCommand}" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="refresh.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="Список таблиц" Margin="3" FontSize="14" HorizontalContentAlignment="Center" Foreground="Blue" FontWeight="Bold"></Label>
+            </StackPanel>
+            <ListView x:Name="tableList" ItemsSource="{Binding TableList}" SelectedItem="{Binding SelectedTable}" SelectionMode="Single"></ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Column="4" VerticalAlignment="Top" Background="#FFE2E2FF">
+            <CheckBox Content="Экспорт с заголовками" IsChecked="{Binding IsHeaders}" Margin="5"></CheckBox>
+            <ComboBox SelectedValuePath="Key" DisplayMemberPath="Value" IsReadOnly="True" SelectedValue="{Binding Delimiter}" IsEditable="True" ItemsSource="{Binding Source={StaticResource Choices}}" Text="Разделитель" Margin="5"></ComboBox>
+            <Button Command="{Binding ExportCommand}" Content="Экспорт (.csv)" Margin="5" Cursor="Hand"></Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Column = "4" VerticalAlignment="Bottom">
+            <Button x:Name="deleteButton" Command="{Binding DeleteCommand}" Content="Удалить таблицу" ToolTip="Выберите таблицу из списка" Margin="5"></Button>
+            <Button x:Name="createButton" Content="Создать таблицу" Margin="5" Click="CreateButtonClick"></Button>
+        </StackPanel>
+
+    </Grid>
+</Page>
